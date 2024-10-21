@@ -1,12 +1,6 @@
 import * as THREE from "three";
 
 export function spawnDrinkingBird(scene: THREE.Scene) {
-  const boxGeometry = new THREE.BoxGeometry(125.6, 389.8, 202.1);
-  const materialGreen = new THREE.MeshBasicMaterial({
-    color: 0x00ff00,
-    side: THREE.FrontSide,
-  });
-
   const supportMesh = createSupport();
   scene.add(supportMesh);
 
@@ -18,14 +12,6 @@ export function spawnDrinkingBird(scene: THREE.Scene) {
 }
 
 const zAxisSpine = -25;
-const blueMaterial = new THREE.MeshBasicMaterial({
-  color: 0x0000ff,
-  side: THREE.FrontSide,
-});
-const redMaterial = new THREE.MeshBasicMaterial({
-  color: 0xff0000,
-  side: THREE.FrontSide,
-});
 
 function createBody() {
   let body = new THREE.Object3D();
@@ -71,10 +57,10 @@ function createSupport() {
 
   const base = new THREE.BoxGeometry(77, 4, 154);
   let baseMesh = new THREE.Mesh(base, getNextMaterial());
-  baseMesh.position.set(-77.0/2, 0, 0);
+  baseMesh.position.set(-77.0 / 2, 0, 0);
   support.add(baseMesh);
   baseMesh = new THREE.Mesh(base, getNextMaterial());
-  baseMesh.position.set(77.0/2, 0, 0);
+  baseMesh.position.set(77.0 / 2, 0, 0);
   support.add(baseMesh);
 
   const lowerSide = new THREE.BoxGeometry(6, 52, 154);
@@ -89,14 +75,14 @@ function createSupport() {
   let upperSideMesh = new THREE.Mesh(upperSide, getNextMaterial());
   upperSideMesh.position.set(
     lowerSideMesh.position.x,
-    lowerSideMesh.position.y + 0.5*282 + 0.5*52,
+    lowerSideMesh.position.y + 0.5 * 282 + 0.5 * 52,
     zAxisSpine
   );
   support.add(upperSideMesh);
   upperSideMesh = new THREE.Mesh(upperSide, getNextMaterial());
   upperSideMesh.position.set(
     -lowerSideMesh.position.x,
-    lowerSideMesh.position.y + 0.5*282 + 0.5*52,
+    lowerSideMesh.position.y + 0.5 * 282 + 0.5 * 52,
     zAxisSpine
   );
   support.add(upperSideMesh);
@@ -105,21 +91,21 @@ function createSupport() {
 }
 
 function createMaterialSwitcher() {
-    const materials = [
-        new THREE.MeshBasicMaterial({ color: 0xff0000, side: THREE.FrontSide }),
-        new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.FrontSide }),
-        new THREE.MeshBasicMaterial({ color: 0x00ff00, side: THREE.FrontSide }),
-        new THREE.MeshBasicMaterial({ color: 0x00ffff, side: THREE.FrontSide }),
-        new THREE.MeshBasicMaterial({ color: 0x0000ff, side: THREE.FrontSide }),
-        new THREE.MeshBasicMaterial({ color: 0xff00ff, side: THREE.FrontSide }),
-    ];
-    let currentIndex = 0;
+  const materials = [
+    new THREE.MeshBasicMaterial({ color: 0xff0000, side: THREE.FrontSide }),
+    new THREE.MeshBasicMaterial({ color: 0xffff00, side: THREE.FrontSide }),
+    new THREE.MeshBasicMaterial({ color: 0x00ff00, side: THREE.FrontSide }),
+    new THREE.MeshBasicMaterial({ color: 0x00ffff, side: THREE.FrontSide }),
+    new THREE.MeshBasicMaterial({ color: 0x0000ff, side: THREE.FrontSide }),
+    new THREE.MeshBasicMaterial({ color: 0xff00ff, side: THREE.FrontSide }),
+  ];
+  let currentIndex = 0;
 
-    return function getNextMaterial() {
-        const material = materials[currentIndex];
-        currentIndex = (currentIndex + 1) % materials.length;
-        return material;
-    };
+  return function getNextMaterial() {
+    const material = materials[currentIndex];
+    currentIndex = (currentIndex + 1) % materials.length;
+    return material;
+  };
 }
 
 const getNextMaterial = createMaterialSwitcher();
