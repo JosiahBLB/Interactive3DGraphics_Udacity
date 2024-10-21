@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "three": "^0.169.0",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.7",
+    "@types/three": "^0.169.0",
+    "tsc-watch": "^6.2.0"
+  },
+  "scripts": {
+    "start": "tsc-watch --onSuccess \"node ./dist/main.js\""
+  }
+}
